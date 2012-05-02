@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VIDEOLIST - APPLIKATION</title>
+<?php 
+//require 'application/src/facebook.php';
+/*
+$facebook = new Facebook(array(
+		'appId'  => '277351065690291',
+		'secret' => 'a230489cb43bea620029b44414d33176',
+));
+
+$user = $facebook->getUser();*/
+?>
+</head>
+
+<body>
+<button id="fbc-login-button">Login with Facebook</button>
+<script type="text/javascript">
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '277351065690291',
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        oauth      : true, // enable OAuth 2.0
+        xfbml      : true  // parse XFBML
+    });
+ 
+    button = document.getElementById('fbc-login-button');
+    button.onclick = function() {
+        FB.getLoginStatus(function(response) {
+            if (response.authResponse) {
+                this.location = 'video/facebook/token/' +  response.authResponse.accessToken;
+            }
+            else {
+                FB.login(function(response) {
+                    if (response.authResponse) {
+                        this.location = 'video/facebook/token/' +  response.authResponse.accessToken;
+                    }}, {scope: 'email'});
+            }
+        });
+ 
+    };
+};
+ 
+(function(d){
+     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     d.getElementsByTagName('head')[0].appendChild(js);
+   }(document));
+</script>
+
+</body>
+</html>

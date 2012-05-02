@@ -1,0 +1,26 @@
+<html>
+<body>
+<strong><?php echo $this->headline; ?></strong>
+<p>Your Access Token: <?php echo $this->access_token; ?></p>
+<p><strong>Videos:</strong></p>
+<ul>
+	<?php
+	if(count($this->video)<1){
+		echo "There are no Youtube Videolinks posted on your Facebook Wall.";
+	} else {
+		for($i=0; $i<=count($this->video)-1&&$i<=7; $i++){
+			echo "<li class='videolist'>";
+			$video = $this->video[$i];
+			echo "<strong><p>".$video->getVideoName()."</strong></br>";
+			echo "Posted: ".$video->getVideoPostInfo()."</br>";
+			echo $video->getVideoFrame($video->getVideoLink(),'embed')."</br>";
+			echo "<a href=".$video->getVideoLink().">Watch on Youtube...</a></p>";		
+			echo "</li>";
+		}	
+	}
+	?>
+</ul>
+
+</body>
+</html>
+
